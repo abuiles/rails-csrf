@@ -1,0 +1,22 @@
+{
+  "name": "rails-csrf",
+  "version": "0.0.1",
+  "authors": [
+    "Adolfo Builes <builes.adolfo@gmail.com>"
+  ],
+  "description": "Ember.js add-on to fetch automatically CSRF token.",
+  "main": "lib/main.js",
+  "keywords": [
+    "Ember.js",
+    "Rails",
+    "CSRF"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
