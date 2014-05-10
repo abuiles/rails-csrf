@@ -1,0 +1,28 @@
+{
+  "name": "rails-csrf",
+  "version": "0.0.1",
+  "description": "Ember.js add-on to fetch automatically CSRF token.",
+  "main": "Brocfile.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/abuiles/rails-csrf.git"
+  },
+  "keywords": [
+    "Ember.js",
+    "Rails",
+    "CSRF"
+  ],
+  "author": "Adolfo Builes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abuiles/rails-csrf/issues"
+  },
+  "homepage": "https://github.com/abuiles/rails-csrf",
+  "dependencies": {
+    "broccoli": "^0.12.0",
+    "broccoli-dist-es6-module": "^0.2.0"
+  }
+}
