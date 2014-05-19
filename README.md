@@ -1,9 +1,9 @@
-rails-csrf
-==========
+# rails-csrf
+
 Ember-add-on to keep track of your Rails CSRF-token.
 
-Usage
------
+## Usage
+
 * Add `"rails-csrf": "abuiles/rails-csrf"` to your bower.json
 * Import the library in your Brocfile
 
@@ -29,3 +29,37 @@ loadInitializers(App, 'rails-csrf');
     }
   });
 ```
+
+## Config
+Specify csrfURL on your environment. By default `api/csrf` is used.
+
+```js
+module.exports = function(environment) {
+  var ENV = {
+    csrfURL: 'api/v1/csrf_token',
+    ...
+```
+
+## Returning CSRF-token from Rails
+
+The following controller will return the required payload to get
+everything working.
+
+```ruby
+class Api::CsrfController < ApplicationController
+  def index
+    render json: { request_forgery_protection_token => form_authenticity_token }.to_json
+  end
+end
+```
+
+Add route
+
+```
+namespace :api do
+  get :csrf, to: 'csrf#index'
+end
+```
+
+## License
+ember-rails is[MIT Licensed](https://github.com/abuiles/rails-csrf/blob/master/LICENSE).
