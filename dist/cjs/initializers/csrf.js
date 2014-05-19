@@ -1,8 +1,11 @@
 "use strict";
+var Service = require("../service")["default"] || require("../service");
+
 exports["default"] = {
   name: 'csrf',
   initialize: function(container, app) {
-    app.inject('route', 'csrf', 'rails-csrf:service');
-    app.inject('controller', 'csrf', 'rails-csrf:service');
+    app.register('service:rails-csrf', Service);
+    app.inject('route', 'csrf', 'service:rails-csrf');
+    app.inject('controller', 'csrf', 'service:rails-csrf');
   }
 };
