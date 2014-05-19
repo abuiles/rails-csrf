@@ -1,5 +1,5 @@
 "use strict";
-var Ember = require("ember").Ember;
+var Ember = require("ember")["default"] || require("ember");
 var request = require("ic-ajax").request;
 
 exports["default"] = Ember.Object.extend({

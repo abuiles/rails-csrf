@@ -3,7 +3,7 @@
 var Service = _dereq_("./service")["default"] || _dereq_("./service");exports.Service = Service;
 },{"./service":2}],2:[function(_dereq_,module,exports){
 "use strict";
-var Ember = window.Ember.Ember;
+var Ember = window.Ember["default"] || window.Ember;
 var request = window.ic.ajax.request;
 
 exports["default"] = Ember.Object.extend({

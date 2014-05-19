@@ -2,7 +2,7 @@ define(
   ["ember","ic-ajax","exports"],
   function(__dependency1__, __dependency2__, __exports__) {
     "use strict";
-    var Ember = __dependency1__.Ember;
+    var Ember = __dependency1__["default"] || __dependency1__;
     var request = __dependency2__.request;
 
     __exports__["default"] = Ember.Object.extend({
