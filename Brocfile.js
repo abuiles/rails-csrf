@@ -1,7 +1,11 @@
-module.exports = function(broccoli) {
-  return require('broccoli-dist-es6-module')(broccoli.makeTree('lib'), {
-    global: 'rcsrf',
-    packageName: 'rails-csrf',
-    main: 'main'
-  });
-};
+var dist = require('broccoli-dist-es6-module');
+
+module.exports = dist('lib', {
+  main: 'main',
+  global: 'rails.csrf',
+  packageName: 'rails-csrf',
+  shim: {
+    'ember': 'Ember',
+    'ic-ajax': 'ic.ajax'
+  }
+});
