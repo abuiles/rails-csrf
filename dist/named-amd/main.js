@@ -1,3 +1,11 @@
+define("rails-csrf/config",
+  ["exports"],
+  function(__exports__) {
+    "use strict";
+    __exports__["default"] = {
+      csrfURL: ENV.csrfURL || 'api/csrf'
+    };
+  });
 define("rails-csrf/initializers/csrf",
   ["../service","exports"],
   function(__dependency1__, __exports__) {
@@ -20,11 +28,12 @@ define("rails-csrf",
     var Service = __dependency1__["default"] || __dependency1__;__exports__.Service = Service;
   });
 define("rails-csrf/service",
-  ["ember","ic-ajax","exports"],
-  function(__dependency1__, __dependency2__, __exports__) {
+  ["ember","ic-ajax","./config","exports"],
+  function(__dependency1__, __dependency2__, __dependency3__, __exports__) {
     "use strict";
     var Ember = __dependency1__["default"] || __dependency1__;
     var request = __dependency2__.request;
+    var config = __dependency3__["default"] || __dependency3__;
 
     __exports__["default"] = Ember.Object.extend({
       setPrefilter: function() {
@@ -42,7 +51,7 @@ define("rails-csrf/service",
       fetchToken: function() {
         var setToken = this.setData.bind(this);
         if (!this.get('data')) {
-          return request('api/v1/csrf').then(setToken);
+          return request(config.csrfURL).then(setToken);
         }
       }
     });

@@ -1,6 +1,7 @@
 "use strict";
 var Ember = require("ember")["default"] || require("ember");
 var request = require("ic-ajax").request;
+var config = require("./config")["default"] || require("./config");
 
 exports["default"] = Ember.Object.extend({
   setPrefilter: function() {
@@ -18,7 +19,7 @@ exports["default"] = Ember.Object.extend({
   fetchToken: function() {
     var setToken = this.setData.bind(this);
     if (!this.get('data')) {
-      return request('api/v1/csrf').then(setToken);
+      return request(config.csrfURL).then(setToken);
     }
   }
 });
