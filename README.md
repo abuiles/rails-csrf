@@ -31,12 +31,18 @@ loadInitializers(App, 'rails-csrf');
 ```
 
 ## Config
-Specify csrfURL on your environment. By default `api/csrf` is used.
+Include railsCsrf in you ENV with the configuration variables.
+
+Currently `csrfURL` is the only one accepted, by default `api/csrf` is used.
+
+
 
 ```js
 module.exports = function(environment) {
   var ENV = {
-    csrfURL: 'api/v1/csrf_token',
+    railsCsrf: {
+      csrfURL: 'api/v1/csrf_token'
+    }
     ...
 ```
 
