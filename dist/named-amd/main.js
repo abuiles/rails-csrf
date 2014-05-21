@@ -2,8 +2,10 @@ define("rails-csrf/config",
   ["exports"],
   function(__exports__) {
     "use strict";
+    var Config = ENV.railsCsrf || {};
+
     __exports__["default"] = {
-      csrfURL: ENV.csrfURL || 'api/csrf'
+      csrfURL: Config.csrfURL || 'api/csrf'
     };
   });
 define("rails-csrf/initializers/csrf",

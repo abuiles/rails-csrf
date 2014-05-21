@@ -1,4 +1,6 @@
 "use strict";
+var Config = ENV.railsCsrf || {};
+
 exports["default"] = {
-  csrfURL: ENV.csrfURL || 'api/csrf'
+  csrfURL: Config.csrfURL || 'api/csrf'
 };
