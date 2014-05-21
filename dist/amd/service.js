@@ -18,12 +18,28 @@ define(
         var param = Object.keys(data)[0];
         this.set('data', { param: param, token: data[param] });
         this.setPrefilter();
+
+        return this.get('data');
       },
       fetchToken: function() {
-        var setToken = this.setData.bind(this);
-        if (!this.get('data')) {
-          return request(config.csrfURL).then(setToken);
+        var promise;
+        var setData = this.setData.bind(this);
+
+        if (this.get('data')) {
+          promise = Ember.RSVP.resolve(this.get('data'));
+        } else {
+          var token = Ember.$('meta[name="csrf-token"]').attr('content');
+
+          if (!Ember.isEmpty(token)) {
+            promise = Ember.RSVP.resolve({'authenticity_token': token });
+          } else {
+            promise = request(config.csrfURL);
+          }
+
+          promise = promise.then(setData);
         }
+
+        return promise;
       }
     });
   });
