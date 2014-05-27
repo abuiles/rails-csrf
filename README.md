@@ -68,4 +68,4 @@ end
 ```
 
 ## License
-ember-rails is[MIT Licensed](https://github.com/abuiles/rails-csrf/blob/master/LICENSE).
+rails-csrf is [MIT Licensed](https://github.com/abuiles/rails-csrf/blob/master/LICENSE).
