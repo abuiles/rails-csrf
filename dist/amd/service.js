@@ -4,7 +4,7 @@ define(
     "use strict";
     var Ember = __dependency1__["default"] || __dependency1__;
     var request = __dependency2__.request;
-    var config = __dependency3__["default"] || __dependency3__;
+    var Config = __dependency3__["default"] || __dependency3__;
 
     __exports__["default"] = Ember.Object.extend({
       setPrefilter: function() {
@@ -33,7 +33,7 @@ define(
           if (!Ember.isEmpty(token)) {
             promise = Ember.RSVP.resolve({'authenticity_token': token });
           } else {
-            promise = request(config.csrfURL);
+            promise = request(Config.get('url'));
           }
 
           promise = promise.then(setData);

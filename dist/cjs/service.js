@@ -1,7 +1,7 @@
 "use strict";
 var Ember = require("ember")["default"] || require("ember");
 var request = require("ic-ajax").request;
-var config = require("./config")["default"] || require("./config");
+var Config = require("./config")["default"] || require("./config");
 
 exports["default"] = Ember.Object.extend({
   setPrefilter: function() {
@@ -30,7 +30,7 @@ exports["default"] = Ember.Object.extend({
       if (!Ember.isEmpty(token)) {
         promise = Ember.RSVP.resolve({'authenticity_token': token });
       } else {
-        promise = request(config.csrfURL);
+        promise = request(Config.get('url'));
       }
 
       promise = promise.then(setData);

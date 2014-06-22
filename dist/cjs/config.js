@@ -1,6 +1,13 @@
 "use strict";
-var Config = ENV.railsCsrf || {};
-
-exports["default"] = {
-  csrfURL: Config.csrfURL || 'api/csrf'
+var __config__ = {
+  url: 'api/csrf'
 };
+
+function set(key, value) {
+  __config__[key] = value;
+};
+exports.set = set;
+function get(key) {
+  return __config__[key];
+};
+exports.get = get;

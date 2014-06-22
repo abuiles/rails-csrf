@@ -2,11 +2,18 @@ define("rails-csrf/config",
   ["exports"],
   function(__exports__) {
     "use strict";
-    var Config = ENV.railsCsrf || {};
-
-    __exports__["default"] = {
-      csrfURL: Config.csrfURL || 'api/csrf'
+    var __config__ = {
+      url: 'api/csrf'
     };
+
+    function set(key, value) {
+      __config__[key] = value;
+    };
+    __exports__.set = set;
+    function get(key) {
+      return __config__[key];
+    };
+    __exports__.get = get;
   });
 define("rails-csrf/initializers/csrf",
   ["../service","exports"],
@@ -24,10 +31,17 @@ define("rails-csrf/initializers/csrf",
     };
   });
 define("rails-csrf",
-  ["./service","exports"],
-  function(__dependency1__, __exports__) {
+  ["./service","./config","exports"],
+  function(__dependency1__, __dependency2__, __exports__) {
     "use strict";
-    var Service = __dependency1__["default"] || __dependency1__;__exports__.Service = Service;
+    var Service = __dependency1__["default"] || __dependency1__;
+    var Config = __dependency2__["default"] || __dependency2__;
+
+    function setCsrfUrl(csrfURL) {
+      Config.set('url', csrfURL);
+    }
+    __exports__.Service = Service;
+    __exports__.setCsrfUrl = setCsrfUrl;
   });
 define("rails-csrf/service",
   ["ember","ic-ajax","./config","exports"],
@@ -35,7 +49,7 @@ define("rails-csrf/service",
     "use strict";
     var Ember = __dependency1__["default"] || __dependency1__;
     var request = __dependency2__.request;
-    var config = __dependency3__["default"] || __dependency3__;
+    var Config = __dependency3__["default"] || __dependency3__;
 
     __exports__["default"] = Ember.Object.extend({
       setPrefilter: function() {
@@ -64,7 +78,7 @@ define("rails-csrf/service",
           if (!Ember.isEmpty(token)) {
             promise = Ember.RSVP.resolve({'authenticity_token': token });
           } else {
-            promise = request(config.csrfURL);
+            promise = request(Config.get('url'));
           }
 
           promise = promise.then(setData);
