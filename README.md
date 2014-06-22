@@ -14,7 +14,8 @@ app.import('vendor/rails-csrf/dist/named-amd/main.js', {
   ]
 });
 ```
-* In `app.js` load initializers
+* In `app.js` add load initializers
+
 ```js
 loadInitializers(App, 'rails-csrf');
 ```
@@ -23,27 +24,23 @@ loadInitializers(App, 'rails-csrf');
   fetched automatically.
 
 ```js
-  export default Ember.Route.extend({
-    beforeModel: function() {
-      return this.csrf.fetchToken();
-    }
-  });
+export default Ember.Route.extend({
+  beforeModel: function() {
+    return this.csrf.fetchToken();
+  }
+});
 ```
 
 ## Config
-Include railsCsrf in you ENV with the configuration variables.
-
-Currently `csrfURL` is the only one accepted, by default `api/csrf` is used.
-
-
+By default `rails-csrf` does a get request to `api/csrf`, if you
+want to customize the end-point use `setCsrfUrl` on app.js
 
 ```js
-module.exports = function(environment) {
-  var ENV = {
-    railsCsrf: {
-      csrfURL: 'api/v1/csrf_token'
-    }
-    ...
+import { setCsrfUrl } from 'rails-csrf';
+
+setCsrfUrl('api/your/own/endpoint');
+...
+loadInitializers(App, 'rails-csrf');
 ```
 
 ## Returning CSRF-token from Rails
