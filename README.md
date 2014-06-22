@@ -4,7 +4,7 @@ Ember-add-on to keep track of your Rails CSRF-token.
 
 ## Usage
 
-* Add `"rails-csrf": "abuiles/rails-csrf"` to your bower.json
+* Add `"rails-csrf": "0.0.4"` to your bower.json
 * Import the library in your Brocfile
 
 ```js
