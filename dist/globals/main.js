@@ -29,6 +29,17 @@ var request = window.ic.ajax.request;
 var Config = _dereq_("./config")["default"] || _dereq_("./config");
 
 exports["default"] = Ember.Object.extend({
+  onAjaxComplete: function() {
+    var _this = this;
+    $(document).on("ajaxComplete", function(event, xhr, settings) {
+      var csrf_param = xhr.getResponseHeader('X-CSRF-Param'),
+      csrf_token = xhr.getResponseHeader('X-CSRF-Token');
+
+      if (csrf_param && csrf_token) {
+        _this.setData({csrf_param: csrf_token});
+      }
+    });
+  }.on('init'),
   setPrefilter: function() {
     var token = this.get('data').token;
     var preFilter = function(options, originalOptions, jqXHR) {
