@@ -10,7 +10,7 @@ Ember-add-on to keep track of your Rails CSRF-token.
 ```js
 app.import('vendor/rails-csrf/dist/named-amd/main.js', {
   'rails-csrf': [
-    'service'
+    'setCsrfUrl'
   ]
 });
 ```
