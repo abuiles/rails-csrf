@@ -20,7 +20,7 @@
     "tests"
   ],
   "dependencies": {
-    "ic-ajax": "~1.0.4",
-    "ember": "~1.5.1"
+    "ic-ajax": "~2.0.1",
+    "ember": "~1.7.0"
   }
 }
