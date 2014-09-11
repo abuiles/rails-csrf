@@ -8,7 +8,7 @@ Ember-add-on to keep track of your Rails CSRF-token.
 * Import the library in your Brocfile
 
 ```js
-app.import('vendor/rails-csrf/dist/named-amd/main.js', {
+app.import('bower_components/rails-csrf/dist/named-amd/main.js', {
   exports: {
     'rails-csrf': [
       'setCsrfUrl'
