@@ -31,7 +31,7 @@ exports["default"] = Ember.Object.extend({
   },
   fetchToken: function() {
     var promise;
-    var setData = this.setData.bind(this);
+    var _this = this;
 
     if (this.get('data')) {
       promise = Ember.RSVP.resolve(this.get('data'));
@@ -44,7 +44,9 @@ exports["default"] = Ember.Object.extend({
         promise = request(Config.get('url'));
       }
 
-      promise = promise.then(setData);
+      promise = promise.then(function(data) {
+        return _this.setData(data);
+      });
     }
 
     return promise;
