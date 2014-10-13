@@ -1,21 +1,10 @@
 # rails-csrf
 
-Ember-add-on to keep track of your Rails CSRF-token.
+ember-cli addon to keep track of your Rails CSRF-token.
 
 ## Usage
 
-* Add `"rails-csrf": "0.0.5"` to your bower.json
-* Import the library in your Brocfile
-
-```js
-app.import('bower_components/rails-csrf/dist/named-amd/main.js', {
-  exports: {
-    'rails-csrf': [
-      'setCsrfUrl'
-    ]
-  }
-});
-```
+* `npm install rails-csrf --save`
 * In `app.js` add load initializers
 
 ```js
@@ -38,7 +27,7 @@ By default `rails-csrf` does a get request to `api/csrf`, if you
 want to customize the end-point use `setCsrfUrl` on app.js
 
 ```js
-import { setCsrfUrl } from 'rails-csrf';
+import { setCsrfUrl } from 'rails-csrf/config';
 
 setCsrfUrl('api/your/own/endpoint');
 ...
