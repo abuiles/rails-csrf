@@ -1,5 +1,5 @@
 var __config__ = {
-  url: 'api/csrf'
+  url: '/api/csrf'
 };
 
 export function set(key, value) {
