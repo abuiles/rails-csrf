@@ -5,7 +5,7 @@ import { get as readFromConfig } from './config';
 export default Ember.Object.extend({
   onAjaxComplete: function() {
     var _this = this;
-    $(document).on("ajaxComplete", function(event, xhr, settings) {
+    Ember.$(document).on("ajaxComplete", function(event, xhr, settings) {
       var csrf_param = xhr.getResponseHeader('X-CSRF-Param'),
       csrf_token = xhr.getResponseHeader('X-CSRF-Token');
 
