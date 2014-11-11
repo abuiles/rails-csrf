@@ -23,13 +23,13 @@ export default Ember.Route.extend({
 ```
 
 ## Config
-By default `rails-csrf` does a get request to `api/csrf`, if you
+By default `rails-csrf` does a get request to `/api/csrf`, if you
 want to customize the end-point use `setCsrfUrl` on app.js
 
 ```js
 import { setCsrfUrl } from 'rails-csrf/config';
 
-setCsrfUrl('api/your/own/endpoint');
+setCsrfUrl('/api/your/own/endpoint');
 ...
 loadInitializers(App, 'rails-csrf');
 ```
