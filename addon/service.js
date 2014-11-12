@@ -22,7 +22,7 @@ export default Ember.Object.extend({
     $.ajaxPrefilter(preFilter);
   },
   setData: function(data) {
-    var param = Object.keys(data)[0];
+    var param = Ember.keys(data)[0];
     this.set('data', { param: param, token: data[param] });
     this.setPrefilter();
 
