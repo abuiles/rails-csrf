@@ -57,8 +57,12 @@ end
 
 ## Working With Integration Tests
 Be sure to mock out the call to the csrf server endpoint. Otherwise your tests
-will fail with "error while processing route: [route]" messages in the
-browser console. For example:
+will fail with 
+```
+"error while processing route: [route]"
+```
+messages in the browser console. For example:
+
 ```
 server = new Pretender(function() {
 this.get('/csrf', function(request) {
