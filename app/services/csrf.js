@@ -1,10 +1,10 @@
 import Ember from 'ember';
-import { request } from 'ic-ajax';
-import { get as readFromConfig } from './config';
 
 export default Ember.Object.extend({
   onAjaxComplete: function() {
     var _this = this;
+    this.fetchToken();
+
     Ember.$(document).on("ajaxComplete", function(event, xhr, settings) {
       var csrf_param = xhr.getResponseHeader('X-CSRF-Param'),
       csrf_token = xhr.getResponseHeader('X-CSRF-Token');
@@ -13,6 +13,8 @@ export default Ember.Object.extend({
         _this.setData({csrf_param: csrf_token});
       }
     });
+
+
   }.on('init'),
   setPrefilter: function() {
     var token = this.get('data').token;
@@ -31,23 +33,10 @@ export default Ember.Object.extend({
   fetchToken: function() {
     var promise;
     var _this = this;
+    var token = Ember.$('meta[name="csrf-token"]').attr('content') || '';
 
-    if (this.get('data')) {
-      promise = Ember.RSVP.resolve(this.get('data'));
-    } else {
-      var token = Ember.$('meta[name="csrf-token"]').attr('content');
-
-      if (!Ember.isEmpty(token)) {
-        promise = Ember.RSVP.resolve({'authenticity_token': token });
-      } else {
-        promise = request(readFromConfig('url'));
-      }
-
-      promise = promise.then(function(data) {
-        return _this.setData(data);
-      });
-    }
-
-    return promise;
+    return Ember.RSVP.resolve().promise.then(function() {
+      return _this.setData({'authenticity_token': token });
+    });
   }
 });
