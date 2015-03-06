@@ -31,11 +31,10 @@ export default Ember.Object.extend({
     return this.get('data');
   },
   fetchToken: function() {
-    var promise;
     var _this = this;
     var token = Ember.$('meta[name="csrf-token"]').attr('content') || '';
 
-    return Ember.RSVP.resolve().promise.then(function() {
+    return Ember.RSVP.resolve().then(function() {
       return _this.setData({'authenticity_token': token });
     });
   }
