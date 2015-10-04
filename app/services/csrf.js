@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Service.extend({
-  onAjaxComplete: function() {
+  onAjaxComplete: Ember.on('init', function() {
     var _this = this;
     this.fetchToken();
 
@@ -15,7 +15,7 @@ export default Ember.Service.extend({
     });
 
 
-  }.on('init'),
+  }),
   setPrefilter: function() {
     var token = this.get('data').token;
     var preFilter = function(options, originalOptions, jqXHR) {

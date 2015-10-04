@@ -18,14 +18,14 @@
   "license": "MIT",
   "devDependencies": {
     "body-parser": "^1.2.0",
-    "broccoli-asset-rev": "0.3.0",
+    "broccoli-asset-rev": "2.2.0",
     "broccoli-ember-hbs-template-compiler": "^1.6.1",
-    "ember-cli": "0.1.0",
+    "ember-cli": "1.13.8",
     "ember-cli-inject-live-reload": "^1.2.2",
-    "ember-cli-qunit": "0.1.0",
-    "ember-data": "1.0.0-beta.10",
+    "ember-cli-qunit": "^1.0.0",
+    "ember-data": "1.13.10",
     "express": "^4.8.5",
-    "glob": "^4.0.5"
+    "glob": "^5.0.14"
   },
   "keywords": [
     "ember-addon"
