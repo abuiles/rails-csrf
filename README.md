@@ -2,11 +2,6 @@
 
 ember-cli addon to keep track of your Rails CSRF-token.
 
-
-## Looking for maintainer
-
-I'm not maintaning this library any more, if you are interested in taking ownership please send me an email.
-
 ## Usage
 
 * `npm install rails-csrf --save`
