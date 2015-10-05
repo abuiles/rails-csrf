@@ -3,9 +3,8 @@ import {
   test
 } from 'ember-qunit';
 
-moduleFor('service:csrf', 'unit:service:csrf');
+moduleFor('service:csrf', 'unit:service:csrf#onAjaxComplete');
 
-// Replace this with your real tests.
 test('it exists', function(assert) {
   var service = this.subject();
   assert.ok(service);

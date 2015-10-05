@@ -10,7 +10,7 @@ export default Ember.Service.extend({
       const csrf_token = xhr.getResponseHeader('X-CSRF-Token');
 
       if (csrf_param && csrf_token) {
-        this.setData({csrf_param: csrf_token});
+        this.setData(csrf_param, csrf_token);
       }
     });
   }),
@@ -24,20 +24,22 @@ export default Ember.Service.extend({
     $.ajaxPrefilter(prefilter);
   },
 
-  setData(data) {
-    const param = Object.keys(data)[0];
+  setData(key, value) {
+    let data = this.getWithDefault('data', {});
+    data[key] = value;
 
-    this.set('data', { param: param, token: data[param] });
+    this.set('data', data);
     this.setPrefilter();
 
-    return this.get('data');
+    return data;
   },
 
   fetchToken() {
     const token = Ember.$('meta[name="csrf-token"]').attr('content') || '';
 
     return Ember.RSVP.resolve().then(() => {
-      return this.setData({'authenticity_token': token });
+      // if there is no token found we should not be setting the authenticity_token value
+      return this.setData('authenticity_token', token);
     });
   }
 });
