@@ -12,6 +12,7 @@
     "ember-load-initializers": "0.1.5",
     "ember-qunit": "0.4.9",
     "ember-qunit-notifications": "0.0.7",
-    "qunit": "~1.18.0"
+    "qunit": "~1.18.0",
+    "pretender": "^0.10.0"
   }
 }

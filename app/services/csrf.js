@@ -1,45 +1,48 @@
 import Ember from 'ember';
 
+const { isPresent, RSVP } = Ember;
+
 export default Ember.Service.extend({
+
+  data: Ember.computed(function() {
+    return {};
+  }),
+
+  param: 'authenticity_token',
 
   onAjaxComplete: Ember.on('init', function() {
     this.fetchToken();
 
     Ember.$(document).on('ajaxComplete', (event, xhr) => {
-      const csrf_param = xhr.getResponseHeader('X-CSRF-Param');
-      const csrf_token = xhr.getResponseHeader('X-CSRF-Token');
-
-      if (csrf_param && csrf_token) {
-        this.setData(csrf_param, csrf_token);
+      const param = xhr.getResponseHeader('X-CSRF-Token');
+      if (isPresent(param)) {
+        this.set('param', param);
       }
+
+      this.setData(xhr.getResponseHeader('X-CSRF-Token'));
     });
   }),
 
   setPrefilter() {
-    const token     = this.get('data.token');
-    const prefilter = (options, originalOptions, jqXHR) => {
-      return jqXHR.setRequestHeader('X-CSRF-Token', token);
-    };
-
-    $.ajaxPrefilter(prefilter);
-  },
-
-  setData(key, value) {
-    let data = this.getWithDefault('data', {});
-    data[key] = value;
-
-    this.set('data', data);
-    this.setPrefilter();
-
-    return data;
+    $.ajaxPrefilter((options, originalOptions, jqXHR) => {
+      jqXHR.setRequestHeader('X-CSRF-Token', this.get(`data.${this.get('param')}`));
+    });
   },
 
   fetchToken() {
     const token = Ember.$('meta[name="csrf-token"]').attr('content') || '';
 
-    return Ember.RSVP.resolve().then(() => {
-      // if there is no token found we should not be setting the authenticity_token value
-      return this.setData('authenticity_token', token);
+    return RSVP.resolve().then(() => {
+      return this.setData(token);
     });
-  }
+  },
+
+  setData(value) {
+    if (isPresent(value)) {
+      this.set(`data.${this.get('param')}`, value);
+      this.setPrefilter();
+    }
+
+    return this.get('data');
+  },
 });
