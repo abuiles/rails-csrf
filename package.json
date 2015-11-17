@@ -1,6 +1,6 @@
 {
   "name": "rails-csrf",
-  "version": "2.0.1",
+  "version": "2.0.2-beta",
   "directories": {
     "doc": "doc",
     "test": "tests"
