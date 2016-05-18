@@ -1,8 +1,8 @@
 export default {
   name: 'rails-csrf',
-  initialize: function() {
-    let app = arguments[1] || arguments[0];
-    app.inject('route',      'csrf', 'service:csrf');
-    app.inject('controller', 'csrf', 'service:csrf');
+  initialize: function(app) {
+    let App = arguments[1] || app;
+    App.inject('route',      'csrf', 'service:csrf');
+    App.inject('controller', 'csrf', 'service:csrf');
   }
 };
